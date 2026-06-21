@@ -1,0 +1,47 @@
+Name : Raiz Hekimov
+Ethnicity: Lezgin
+handle: raizz
+
+Yo, I am Raiz, a student and competitive programmer from Qusar. I focus on algorithms, data structures, and problem solving, with the goal of becoming a world-class software engineer. From writing my first programs in Python to mastering C++, I have always enjoyed turning complex problems into elegant solutions.Outside of programming, I am passionate about mathematics, language learning, and personal growth. I use Linux Mint as my daily operating system and believe that consistency beats talent when talent doesn't work hard. 
+
+
+- Competitive programmer focused on Olympiad-style problem solving.
+
+- Main languages: C++ , Python , C#
+
+- Interested in algorithms, data structures, reusable templates, and clean practical projects.
+
+- OS : Linux Mint 22.1 Cinnamon
+
+- IDEs : Visual Studio Code, PyCharm, Vim, Onile Compailers
+
+- Currently Learning: Machine Learning, Data Science and Linux Systems
+
+
+Projects:
+
+- Competitive Programming Archive
+  - Optimized C++ solutions, reusable templates, and advanced data structures across multiple online judges.-> https://github.com/Hekimovraiz/Competitive-Programming-Archive
+
+- Algorithms
+  - A C++ algorithms toolkit with classic and advanced data structures, graph algorithms, and problem-solving techniques. -> https://github.com/Hekimovraiz/Algorithms
+
+- Piral
+  - A community platform dedicated to preserving the history, culture, and notable figures of the historic village in Qusar. -> https://piral.site/
+
+
+Profiles:
+- GitHub: Hekimovraiz
+- Codeforces: 0xRaiz
+- VJudge: Hekimov038
+- Clist: raiz_hekimov
+- Eolymp: Lezgin_Raiz
+- AtCoder: Hekimov038
+- CodeChef: hakimov_raiz
+
+
+Contact:
+- Instagram: @hakimovraiz
+- Telegram: @hakimovr
+- Discord: @hakimov_44
+- Email: raizhekimov2010@gmail.com

@@ -1,0 +1,689 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --bg: hsl(220, 10%, 8%);
+    --bg-2: hsl(220, 10%, 11%);
+    --bg-3: hsl(220, 10%, 16%);
+    --txt-3: hsl(220, 11%, 35%);
+    --txt-2: hsl(220, 14%, 55%);
+    --txt: hsl(220, 30%, 80%);
+    --txt-0: hsl(220, 45%, 90%);
+    --blue: hsl(190, 70%, 50%);
+    --purple: hsl(240, 80%, 66%);
+    --pink: hsl(279, 80%, 66%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion) {
+    * {
+        animation-delay: 0ms !important;
+        animation-duration: 0ms !important;
+        transition-duration: 0ms !important;
+    }
+}
+
+html {
+    height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-3) transparent;
+    scrollbar-gutter: stable;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--txt);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ── Typography ─────────────────────────── */
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    line-height: 1.375;
+    color: var(--txt-0);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 1rem 0 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 2.5rem 0 1rem;
+}
+
+h3 {
+    font-size: 1.375rem;
+    margin: 1.5rem 0 1rem;
+}
+
+h4 {
+    font-size: 1.125rem;
+    margin: 1.5rem 0 1rem;
+}
+
+p {
+    margin: 1rem 0;
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+li {
+    margin: .5rem 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+strong {
+    font-weight: 600;
+}
+
+figure {
+    margin: 0;
+}
+
+picture {
+    display: flex;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid var(--bg-3);
+    margin: 1.5rem 0;
+}
+
+code {
+    font-family: 'Space Mono', monospace;
+    background: var(--bg-2);
+    padding: 0 .25em;
+    font-size: 1rem;
+    color: #cdd6f4;
+}
+
+pre {
+    font-family: 'Space Mono', monospace;
+    background: var(--bg-2);
+    padding: .5rem .75rem;
+    overflow-x: auto;
+    max-width: calc(100vw - 3rem);
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+blockquote {
+    border-left: 2px solid var(--txt-2);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    color: var(--txt-2);
+}
+
+/* ── Header ─────────────────────────────── */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    height: 5rem;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    transition: transform .25s ease;
+}
+
+header.hide-header {
+    transform: translateY(-100%);
+}
+
+header.home-header {
+    transform: translateY(-70%);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.pfp-link {
+    display: flex;
+    align-items: center;
+}
+
+.pfp {
+    border-radius: 50%;
+    transition: transform 1.5s;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+}
+
+.pfp:hover {
+    transform: rotate(360deg);
+}
+
+.site-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.375rem;
+    color: var(--txt);
+    margin: 0;
+    font-weight: 400;
+}
+
+nav {
+    display: flex;
+    gap: 2.5rem;
+}
+
+a.nav {
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 1.375rem;
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+a.nav .arrow {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-width .25s ease, opacity .2s;
+    white-space: nowrap;
+}
+
+a.nav .slash {
+    display: inline-block;
+    transition: max-width .25s ease, opacity .2s;
+    max-width: 1.2ch;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+a.nav:hover .arrow {
+    max-width: 3ch;
+    opacity: 1;
+}
+
+a.nav:hover .slash {
+    max-width: 0;
+    opacity: 0;
+}
+
+/* ── External Links ─────────────────────── */
+a.external {
+    position: relative;
+    text-decoration: underline transparent 2px;
+    transition: text-decoration-color .2s;
+}
+
+a.external .ext-arrow {
+    display: inline-block;
+    margin-left: .5ch;
+    transition: .2s;
+}
+
+a.external:hover {
+    text-decoration-color: var(--txt);
+}
+
+a.external:hover .ext-arrow {
+    transform: translate(.2em, -.2em);
+}
+
+/* ── Back link ──────────────────────────── */
+a.back {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+}
+
+a.back .arrow {
+    display: inline-block;
+    margin-right: .5ch;
+    transition: .2s;
+}
+
+a.back:hover .arrow {
+    transform: translate(-.3em);
+}
+
+/* ── Main / Page Container ──────────────── */
+main {
+    width: 100%;
+    max-width: 53rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 10rem;
+    flex: 1;
+}
+
+/* ── Home page ──────────────────────────── */
+.home-main {
+    max-width: 53rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 10rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.home-hero {
+    padding-top: 30vh;
+}
+
+.home-hero h1 {
+    font-size: 4rem;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+}
+
+.home-hero h1 .handle {
+    color: var(--blue);
+}
+
+.home-hero .tagline {
+    font-size: 1.25rem;
+    color: var(--txt-2);
+    margin: 0 0 2.5rem;
+    line-height: 1.6;
+}
+
+.home-hero .bio {
+    font-size: 1.125rem;
+    color: var(--txt-2);
+    max-width: 42rem;
+    line-height: 1.75;
+    margin: 0 0 3rem;
+}
+
+.home-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.home-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--txt-2);
+    transition: color .2s;
+    display: flex;
+    align-items: center;
+    gap: .4ch;
+}
+
+.home-links a:hover {
+    color: var(--txt-0);
+}
+
+.home-links a svg {
+    width: 1em;
+    height: 1em;
+}
+
+/* ── About page ─────────────────────────── */
+.about-pfp-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.about-pfp {
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    flex-shrink: 0;
+    transition: transform 1.5s;
+    cursor: pointer;
+}
+
+.about-pfp:hover {
+    transform: rotate(360deg);
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    padding: 0;
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.skill-list li {
+    font-family: 'Space Mono', monospace;
+    font-size: .85rem;
+    background: var(--bg-2);
+    border: 1px solid var(--bg-3);
+    padding: .2rem .7rem;
+    color: var(--txt-2);
+    margin: 0;
+}
+
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+
+.profile-links a {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-size: 1rem;
+    color: var(--txt-2);
+    transition: color .2s;
+}
+
+.profile-links a:hover {
+    color: var(--txt-0);
+}
+
+.profile-links .label {
+    font-family: 'Space Mono', monospace;
+    color: var(--txt-3);
+    font-size: .85rem;
+    min-width: 7rem;
+}
+
+/* ── Projects ───────────────────────────── */
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.project-card {
+    display: block;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--bg-3);
+    transition: .2s;
+}
+
+.project-card:first-child {
+    border-top: 1px solid var(--bg-3);
+}
+
+.project-card .proj-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.25rem;
+    color: var(--txt-0);
+    margin: 0 0 .5rem;
+    transition: color .2s;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.project-card:hover .proj-title {
+    color: var(--blue);
+}
+
+.project-card .proj-desc {
+    color: var(--txt-2);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.project-card .proj-arrow {
+    display: inline-block;
+    transition: transform .2s;
+    color: var(--txt-3);
+}
+
+.project-card:hover .proj-arrow {
+    transform: translate(.3em, -.2em);
+    color: var(--blue);
+}
+
+/* ── Blog ───────────────────────────────── */
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.blog-card {
+    display: block;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--bg-3);
+    transition: .2s;
+}
+
+.blog-card:first-child {
+    border-top: 1px solid var(--bg-3);
+}
+
+.blog-card .blog-date {
+    font-family: 'Space Mono', monospace;
+    font-size: .85rem;
+    color: var(--txt-3);
+    margin: 0 0 .4rem;
+}
+
+.blog-card .blog-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.25rem;
+    color: var(--txt-0);
+    margin: 0 0 .5rem;
+    transition: color .2s;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.blog-card:hover .blog-title {
+    color: var(--blue);
+}
+
+.blog-card .blog-excerpt {
+    color: var(--txt-2);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.blog-card .blog-arrow {
+    display: inline-block;
+    transition: transform .2s;
+    color: var(--txt-3);
+}
+
+.blog-card:hover .blog-arrow {
+    transform: translate(.3em, -.2em);
+    color: var(--blue);
+}
+
+.blog-empty {
+    color: var(--txt-3);
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+/* ── Uses ───────────────────────────────── */
+.uses-section h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: var(--txt);
+    border-bottom: 1px solid var(--bg-3);
+    padding-bottom: .5rem;
+}
+
+.uses-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.uses-list li {
+    margin-bottom: .5rem;
+    color: var(--txt-2);
+    line-height: 1.6;
+}
+
+.uses-list li strong {
+    color: var(--txt);
+    font-weight: 600;
+}
+
+.uses-list a {
+    color: var(--txt);
+    text-decoration: underline;
+    text-decoration-color: var(--bg-3);
+    text-underline-offset: .2em;
+    transition: text-decoration-color .2s;
+}
+
+.uses-list a:hover {
+    text-decoration-color: var(--txt);
+}
+
+/* ── Contact ────────────────────────────── */
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-2);
+    border: 1px solid var(--bg-3);
+    transition: border-color .2s, background .2s;
+}
+
+.contact-link:hover {
+    border-color: var(--txt-3);
+    background: var(--bg-3);
+}
+
+.contact-link .cl-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .85rem;
+    color: var(--txt-3);
+    min-width: 6rem;
+}
+
+.contact-link .cl-value {
+    color: var(--txt);
+    font-size: 1rem;
+    flex: 1;
+}
+
+.contact-link .cl-arrow {
+    display: inline-block;
+    color: var(--txt-3);
+    transition: transform .2s, color .2s;
+}
+
+.contact-link:hover .cl-arrow {
+    transform: translate(.3em, -.2em);
+    color: var(--txt);
+}
+
+/* ── Sub text ───────────────────────────── */
+.sub {
+    color: var(--txt-2);
+}
+
+/* ── Inline content links ───────────────── */
+.content a {
+    font-weight: 600;
+    text-decoration: underline var(--txt-3) 2px;
+    transition: text-decoration-color .2s;
+}
+
+.content a:hover {
+    text-decoration-color: var(--txt);
+}
+
+/* ── Page enter animation ───────────────── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-enter {
+    animation: fadeUp .35s ease both;
+}
+
+/* ── Logo SVG ───────────────────────────── */
+.logo-svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 1000px) {
+    :root {
+        font-size: 87.5%;
+    }
+}
+
+@media (max-width: 850px) {
+    header {
+        padding: 0 1.5rem;
+        gap: 1.5rem;
+    }
+
+    nav {
+        gap: 1.5rem;
+    }
+
+    .home-hero h1 {
+        font-size: 2.75rem;
+    }
+}
+
+@media (max-width: 700px) {
+    nav {
+        display: none;
+    }
+
+    .about-pfp-wrap {
+        flex-direction: column;
+    }
+}
