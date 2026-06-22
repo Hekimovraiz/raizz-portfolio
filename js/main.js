@@ -1,26 +1,29 @@
-/* ── Mobile menu ─────────────────────────────────────────── */
+/* ── Mobile bottom navigation ────────────────────────────── */
 (function () {
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('site-nav');
-    if (!toggle || !nav) return;
+    const MOBILE_LINKS = [
+        { href: '/about.html', label: 'about' },
+        { href: '/projects.html', label: 'work' },
+        { href: '/blog.html', label: 'blog' },
+        { href: '/uses.html', label: 'uses' },
+        { href: '/contact.html', label: 'contact' },
+    ];
 
-    function setMenuOpen(open) {
-        document.body.classList.toggle('menu-open', open);
-        toggle.setAttribute('aria-expanded', open);
-        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    function getActiveNavHref() {
+        const seg = window.location.pathname.split('/').filter(Boolean)[0];
+        if (!seg || seg === 'index.html') return null;
+        if (seg === 'blog') return '/blog.html';
+        return seg.endsWith('.html') ? '/' + seg : '/' + seg + '.html';
     }
 
-    toggle.addEventListener('click', () => {
-        setMenuOpen(!document.body.classList.contains('menu-open'));
-    });
-
-    nav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => setMenuOpen(false));
-    });
-
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') setMenuOpen(false);
-    });
+    const activeHref = getActiveNavHref();
+    const bar = document.createElement('nav');
+    bar.className = 'mobile-bar';
+    bar.setAttribute('aria-label', 'Mobile navigation');
+    bar.innerHTML = MOBILE_LINKS.map(link => {
+        const active = link.href === activeHref ? ' class="active"' : '';
+        return `<a href="${link.href}"${active}>/${link.label}</a>`;
+    }).join('');
+    document.body.appendChild(bar);
 })();
 
 /* ── Header scroll behaviour ─────────────────────────────── */
@@ -29,10 +32,15 @@
     if (!header) return;
 
     const isHome = document.body.dataset.page === 'home';
+    const isMobile = () => window.matchMedia('(max-width: 850px)').matches;
 
     if (isHome) {
-        header.classList.add('home-header');
+        if (!isMobile()) header.classList.add('home-header');
         window.addEventListener('scroll', () => {
+            if (isMobile()) {
+                header.classList.remove('home-header');
+                return;
+            }
             if (window.scrollY > 60) {
                 header.classList.remove('home-header');
             } else {
@@ -42,6 +50,10 @@
     } else {
         let lastY = window.scrollY;
         window.addEventListener('scroll', () => {
+            if (isMobile()) {
+                header.classList.remove('hide-header');
+                return;
+            }
             const y = window.scrollY;
             if (y > lastY && y > 80) {
                 header.classList.add('hide-header');
