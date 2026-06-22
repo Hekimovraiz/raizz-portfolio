@@ -1,5 +1,6 @@
 [build]
   publish = "."
+  command = "python3 scripts/gen-sitemap.py"
 
 [[headers]]
   for = "/*"

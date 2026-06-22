@@ -1,1 +1,4 @@
 abusov.com
+.vercel
+.env*
+sitemap.xml

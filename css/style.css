@@ -194,9 +194,29 @@ header.home-header {
     font-weight: 400;
 }
 
-nav {
+nav.site-nav {
     display: flex;
     gap: 2.5rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .5rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    z-index: 101;
+}
+
+.menu-bar {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--txt);
+    transition: transform .25s ease, opacity .25s ease;
 }
 
 a.nav {
@@ -320,6 +340,47 @@ main {
     max-width: 42rem;
     line-height: 1.75;
     margin: 0 0 3rem;
+}
+
+.home-hero .bio-link {
+    color: var(--blue);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color .2s;
+}
+
+.home-hero .bio-link:hover {
+    text-decoration-color: var(--blue);
+}
+
+.recent-posts-wrap {
+    margin-bottom: 2.5rem;
+}
+
+.recent-posts-heading {
+    margin-bottom: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .875rem;
+    color: var(--txt-3);
+}
+
+.recent-post-link {
+    display: block;
+    color: var(--txt);
+    opacity: .8;
+    transition: opacity .2s;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+}
+
+.recent-post-link:hover {
+    opacity: 1;
+}
+
+.recent-post-link .recent-arrow {
+    color: var(--blue);
+    margin-right: 1ch;
 }
 
 .home-links {
@@ -617,6 +678,28 @@ main {
     color: var(--txt);
 }
 
+/* ── Footer ─────────────────────────────── */
+.site-footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    color: var(--txt-3);
+    font-family: 'Space Mono', monospace;
+    font-size: .85rem;
+    border-top: 1px solid var(--bg-3);
+    flex-shrink: 0;
+}
+
+.site-footer a {
+    color: var(--txt-2);
+    text-decoration: underline;
+    text-decoration-color: var(--bg-3);
+    transition: text-decoration-color .2s;
+}
+
+.site-footer a:hover {
+    text-decoration-color: var(--txt-2);
+}
+
 /* ── Sub text ───────────────────────────── */
 .sub {
     color: var(--txt-2);
@@ -679,8 +762,38 @@ main {
 }
 
 @media (max-width: 700px) {
-    nav {
-        display: none;
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav.site-nav {
+        position: fixed;
+        inset: 0;
+        top: 5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        background: var(--bg);
+        transform: translateX(100%);
+        transition: transform .3s ease;
+        z-index: 99;
+    }
+
+    body.menu-open nav.site-nav {
+        transform: translateX(0);
+    }
+
+    body.menu-open .menu-toggle .menu-bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    body.menu-open .menu-toggle .menu-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    body.menu-open .menu-toggle .menu-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .about-pfp-wrap {

@@ -18,6 +18,9 @@ POST_TEMPLATE = """<!doctype html>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{title} — raizz</title>
     <meta name="description" content="{excerpt}"/>
+    <meta property="og:image" content="/assets/pfp.png"/>
+    <meta property="og:image:alt" content="raizz — Raiz Hekimov"/>
+    <meta name="twitter:image" content="/assets/pfp.png"/>
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
     <link rel="stylesheet" href="/css/style.css"/>
     <style>
@@ -38,7 +41,12 @@ POST_TEMPLATE = """<!doctype html>
         </a>
         <a href="/"><h1 class="site-title">raizz</h1></a>
     </div>
-    <nav>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+    </button>
+    <nav id="site-nav" class="site-nav">
         <a class="nav" href="/about.html"><span class="arrow">-></span><span class="slash">/</span>about</a>
         <a class="nav" href="/projects.html"><span class="arrow">-></span><span class="slash">/</span>projects</a>
         <a class="nav" href="/blog.html"><span class="arrow">-></span><span class="slash">/</span>blog</a>
@@ -60,6 +68,10 @@ POST_TEMPLATE = """<!doctype html>
         <p>...</p>
     </div>
 </main>
+
+<footer class="site-footer">
+    <p>© 2026 raizz · <a href="https://github.com/Hekimovraiz/raizz" target="_blank" rel="noopener">source</a></p>
+</footer>
 
 <script src="/js/main.js"></script>
 </body>

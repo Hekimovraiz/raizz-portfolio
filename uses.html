@@ -8,6 +8,9 @@
     <meta name="description" content="Raiz Hekimov's daily drivers and tools." />
     <meta property="og:title" content="uses — raizz" />
     <meta property="og:description" content="My daily drivers and tools." />
+    <meta property="og:image" content="/assets/pfp.png" />
+    <meta property="og:image:alt" content="raizz — Raiz Hekimov" />
+    <meta name="twitter:image" content="/assets/pfp.png" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/css/style.css" />
 </head>
@@ -23,7 +26,13 @@
                 <h1 class="site-title">raizz</h1>
             </a>
         </div>
-        <nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+            aria-controls="site-nav">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </button>
+        <nav id="site-nav" class="site-nav">
             <a class="nav" href="/about.html"><span class="arrow">-></span><span class="slash">/</span>about</a>
             <a class="nav" href="/projects.html"><span class="arrow">-></span><span class="slash">/</span>projects</a>
             <a class="nav" href="/blog.html"><span class="arrow">-></span><span class="slash">/</span>blog</a>
@@ -43,15 +52,12 @@
                         Latitude E6540</a></li>
                 <li><strong>CPU:</strong> <a href="https://www.intel.com/" target="_blank" rel="noopener">Intel Core
                         i5</a></li>
-                <li><strong>RAM:</strong> <a
-                        href="https://aliexpress.ru/item/1005008996182036.html?spm=a2g2w.orderdetail.0.0.64294aa6KMahi0&sku_id=12000048989721155"
-                        target="_blank" rel="noopener"> 16 GB DDR3L </a></li>
+                <li><strong>RAM:</strong> <a href="https://www.aliexpress.com/" target="_blank" rel="noopener">16 GB
+                        DDR3L</a></li>
                 <li><strong>Desktop OS:</strong> <a href="https://linuxmint.com/" target="_blank" rel="noopener">Linux
                         Mint 22.1 Cinnamon</a></li>
-                <li><strong>Phone:</strong> <a
-                        href="https://www.amazon.com/dp/B0F1DMF359/ref=twister_B0F1DNN1YS?_encoding=UTF8&th=1"
-                        target="_blank" rel="noopener">Redmi
-                        Note 14S</a></li>
+                <li><strong>Phone:</strong> <a href="https://www.amazon.com/dp/B0F1DMF359" target="_blank"
+                        rel="noopener">Redmi Note 14S</a></li>
                 <li><strong>Mobile OS:</strong> <a href="https://www.mi.com/global/hyperos/" target="_blank"
                         rel="noopener">Xiaomi HyperOS 3.0.302.0</a></li>
                 <li><strong>Headphones:</strong>
@@ -63,9 +69,8 @@
                 <li><strong>Mouse:</strong> <a
                         href="https://gentlecomputer.ng/product/c5-wired-gaming-mouse-with-light/" target="_blank"
                         rel="noopener">C5 RGB</a></li>
-                <li><strong>Cooling Pad:</strong> <a
-                        href="https://www.temu.com/goods.html?_bg_fs=1&goods_id=601099523121665&parent_order_sn=PO-014-01576329467433037&_oak_order_sn=014-01576266552873037&_oak_goods_num=1&sku_id=17592244939008&_x_sessn_id=grfas9hbf8&refer_page_name=bgt_order_detail&refer_page_id=10045_1782069761236_c2ng5vi8gu&refer_page_sn=10045"
-                        target="_blank" rel="noopener">TISHRIC 6-Fan Laptop Cooling Pad</a></li>
+                <li><strong>Cooling Pad:</strong> <a href="https://www.temu.com/" target="_blank"
+                        rel="noopener">TISHRIC 6-Fan Laptop Cooling Pad</a></li>
                 <li><strong>Monitor:</strong> <a
                         href="https://zoom.cnews.ru/goods_card/item/20263/mitsubishi-diamond-point-nx77lcd"
                         target="_blank" rel="noopener">Mitsubishi Diamond Point NX77LCD</a></li>
@@ -110,7 +115,8 @@
                         rel="noopener">GitHub</a></li>
                 <li><strong>Deployment:</strong> <a href="https://vercel.com/" target="_blank"
                         rel="noopener">Vercel</a>,
-                    <a href="https://app.netlify.com/" target="_blank" rel="noopener">Netlify</a>
+                    <a href="https://app.netlify.com/" target="_blank" rel="noopener">Netlify</a>,
+                    <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>
                 </li>
             </ul>
         </div>
@@ -172,9 +178,12 @@
 
             </ul>
         </div>
-        </div>
 
     </main>
+
+    <footer class="site-footer">
+        <p>© 2026 raizz · <a href="https://github.com/Hekimovraiz/raizz" target="_blank" rel="noopener">source</a></p>
+    </footer>
 
     <script src="/js/main.js"></script>
 </body>
