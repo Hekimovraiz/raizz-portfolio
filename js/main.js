@@ -1,29 +1,41 @@
-/* ── Mobile bottom navigation ────────────────────────────── */
+/* ── Mobile hamburger menu ───────────────────────────────── */
 (function () {
-    const MOBILE_LINKS = [
-        { href: '/about.html', label: 'about' },
-        { href: '/projects.html', label: 'work' },
-        { href: '/blog.html', label: 'blog' },
-        { href: '/uses.html', label: 'uses' },
-        { href: '/contact.html', label: 'contact' },
-    ];
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('site-nav');
+    if (!toggle || !nav) return;
 
-    function getActiveNavHref() {
-        const seg = window.location.pathname.split('/').filter(Boolean)[0];
-        if (!seg || seg === 'index.html') return null;
-        if (seg === 'blog') return '/blog.html';
-        return seg.endsWith('.html') ? '/' + seg : '/' + seg + '.html';
+    function closeMenu() {
+        toggle.classList.remove('is-open');
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        document.body.classList.remove('menu-open');
     }
 
-    const activeHref = getActiveNavHref();
-    const bar = document.createElement('nav');
-    bar.className = 'mobile-bar';
-    bar.setAttribute('aria-label', 'Mobile navigation');
-    bar.innerHTML = MOBILE_LINKS.map(link => {
-        const active = link.href === activeHref ? ' class="active"' : '';
-        return `<a href="${link.href}"${active}>/${link.label}</a>`;
-    }).join('');
-    document.body.appendChild(bar);
+    function openMenu() {
+        toggle.classList.add('is-open');
+        nav.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close menu');
+        document.body.classList.add('menu-open');
+    }
+
+    toggle.addEventListener('click', () => {
+        if (nav.classList.contains('is-open')) closeMenu();
+        else openMenu();
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    window.matchMedia('(max-width: 850px)').addEventListener('change', (e) => {
+        if (!e.matches) closeMenu();
+    });
 })();
 
 /* ── Header scroll behaviour ─────────────────────────────── */
