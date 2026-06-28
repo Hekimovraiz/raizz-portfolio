@@ -1,0 +1,58 @@
+{
+  "updatedAt": "2026-06-27T17:35:54.904271+00:00",
+  "platforms": {
+    "codeforces": {
+      "handle": "0xRaiz",
+      "url": "https://codeforces.com/profile/0xRaiz",
+      "rating": 1201,
+      "maxRating": 1249,
+      "rank": "pupil",
+      "maxRank": "pupil",
+      "solved": 611,
+      "contests": 33,
+      "organization": "Piral K.T.O.M"
+    },
+    "eolymp": {
+      "handle": "Lezgin_Raiz",
+      "url": "https://www.eolymp.com/en/users/Lezgin_Raiz",
+      "rating": 1387,
+      "rankLabel": "Skilled",
+      "solved": 188,
+      "submissions": 240,
+      "achievement": "Problem Solver"
+    },
+    "vjudge": {
+      "handle": "Hekimov038",
+      "url": "https://vjudge.net/user/Hekimov038",
+      "rankNum": 902,
+      "solved": 816,
+      "attempted": 865
+    },
+    "atcoder": {
+      "handle": "Hekimov038",
+      "url": "https://atcoder.jp/users/Hekimov038",
+      "rating": 142,
+      "maxRating": 218,
+      "contests": 6
+    },
+    "codechef": {
+      "handle": "hakimov_raiz",
+      "url": "https://www.codechef.com/users/hakimov_raiz",
+      "rating": 1437,
+      "solved": 75
+    },
+    "github": {
+      "handle": "Hekimovraiz",
+      "url": "https://github.com/Hekimovraiz",
+      "publicRepos": 7,
+      "followers": 3
+    }
+  },
+  "profiles": [
+    {
+      "name": "Clist",
+      "handle": "raiz_hekimov",
+      "url": "https://clist.by/coder/raiz_hekimov/"
+    }
+  ]
+}

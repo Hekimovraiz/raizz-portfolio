@@ -10,6 +10,7 @@ from datetime import date
 
 POSTS_JSON = os.path.join(os.path.dirname(__file__), "blog", "posts.json")
 POSTS_DIR  = os.path.join(os.path.dirname(__file__), "blog", "posts")
+WORDS_PER_MINUTE = 200
 
 POST_TEMPLATE = """<!doctype html>
 <html lang="en">
@@ -37,7 +38,7 @@ POST_TEMPLATE = """<!doctype html>
 <header>
     <div class="header-left">
         <a class="pfp-link" href="/" aria-label="homepage">
-            <img class="pfp" src="/assets/pfp.png" alt="raizz avatar" width="32" height="32"/>
+            <img class="pfp logo-svg" src="/assets/avatar.svg" alt="raizz logo" width="32" height="32"/>
         </a>
         <a href="/"><h1 class="site-title">raizz</h1></a>
     </div>
@@ -59,7 +60,7 @@ POST_TEMPLATE = """<!doctype html>
     <a class="back" href="/blog.html"><span class="arrow">←</span>/blog</a>
 
     <h1>{title}</h1>
-    <div class="post-meta">{date}</div>
+    <div class="post-meta" data-slug="{slug_id}">{date}</div>
 
     <div class="post-content content">
         <!-- ✍️  Write your post here -->
@@ -80,18 +81,28 @@ POST_TEMPLATE = """<!doctype html>
 
 def slugify(text):
     text = text.lower().strip()
-    text = re.sub(r'[^\\w\\s-]', '', text)
-    text = re.sub(r'[\\s_-]+', '-', text)
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[\s_-]+', '-', text)
     return text.strip('-')
+
+def reading_minutes(html):
+    text = re.sub(r'<[^>]+>', ' ', html)
+    words = len(re.findall(r'\w+', text))
+    return max(1, round(words / WORDS_PER_MINUTE))
+
+def parse_tags(raw):
+    return [t.strip().lower() for t in raw.split(',') if t.strip()]
 
 def main():
     print("\\n── raizz blog post creator ──\\n")
     title   = input("Post title: ").strip()
     excerpt = input("Short excerpt (1-2 sentences): ").strip()
+    tags_raw = input("Tags (comma-separated, e.g. linux, dev): ").strip()
     today   = date.today().isoformat()
 
     slug = slugify(title)
-    filename = f"{today}-{slug}.html"
+    slug_id = f"{today}-{slug}"
+    filename = f"{slug_id}.html"
     filepath = os.path.join(POSTS_DIR, filename)
 
     if os.path.exists(filepath):
@@ -99,20 +110,25 @@ def main():
         sys.exit(1)
 
     # Write HTML post file
-    html = POST_TEMPLATE.format(title=title, excerpt=excerpt, date=today, slug=slug)
+    html = POST_TEMPLATE.format(title=title, excerpt=excerpt, date=today, slug=slug, slug_id=slug_id)
     os.makedirs(POSTS_DIR, exist_ok=True)
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(html)
+
+    tags = parse_tags(tags_raw)
+    minutes = reading_minutes(html)
 
     # Update posts.json
     with open(POSTS_JSON, "r", encoding="utf-8") as f:
         posts = json.load(f)
 
     posts.append({
-        "slug": filename.replace(".html", ""),
+        "slug": slug_id,
         "title": title,
         "excerpt": excerpt,
-        "date": today
+        "date": today,
+        "tags": tags,
+        "readingMinutes": minutes
     })
 
     with open(POSTS_JSON, "w", encoding="utf-8") as f:
@@ -120,6 +136,7 @@ def main():
 
     print(f"\\n✅  Created: blog/posts/{filename}")
     print(f"✅  Updated: blog/posts.json")
+    print(f"✅  Reading time: {minutes} min · Tags: {', '.join(tags) if tags else 'none'}")
     print(f"\\n📝  Edit your post: {filepath}")
     print("\\n🚀  When ready, push to GitHub and Netlify will deploy automatically.\\n")
 

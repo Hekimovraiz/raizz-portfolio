@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="raizz logo">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14161c"/>
+      <stop offset="100%" stop-color="#1a1d26"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#2a3040" stroke-width="1"/>
+  <!-- terminal prompt + code brackets -->
+  <path d="M18 22 L26 32 L18 42" fill="none" stroke="#26bbd9" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M30 42 H46" fill="none" stroke="#6262ee" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M38 18 C44 18 48 22 48 28 C48 34 44 38 38 38 H34 V46" fill="none" stroke="#bd63ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="38" cy="28" r="2.5" fill="#26bbd9"/>
+</svg>

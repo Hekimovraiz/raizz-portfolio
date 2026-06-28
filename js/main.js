@@ -97,6 +97,28 @@ function formatDate(iso) {
     });
 }
 
+function formatReadingTime(minutes) {
+    const mins = Math.max(1, Number(minutes) || 1);
+    return `${mins} min read`;
+}
+
+function renderBlogTags(tags) {
+    if (!tags || !tags.length) return '';
+    return `<div class="blog-tags">${tags.map(tag =>
+        `<span class="blog-tag">#${tag}</span>`
+    ).join('')}</div>`;
+}
+
+function renderBlogMeta(post) {
+    const parts = [`<span class="blog-date">${formatDate(post.date)}</span>`];
+    if (post.readingMinutes) {
+        parts.push(`<span class="blog-read-time">${formatReadingTime(post.readingMinutes)}</span>`);
+    }
+    const tags = renderBlogTags(post.tags);
+    if (tags) parts.push(tags);
+    return `<div class="blog-meta-row">${parts.join('')}</div>`;
+}
+
 /* ── Recent posts (home page) ────────────────────────────── */
 async function loadRecentPosts() {
     const container = document.getElementById('recent-posts');
@@ -118,6 +140,7 @@ async function loadRecentPosts() {
         container.innerHTML = recent.map(p => `
             <a class="recent-post-link" href="/blog/posts/${p.slug}.html">
                 <span class="recent-arrow">-></span>${p.title}
+                ${p.readingMinutes ? `<span class="blog-read-time"> · ${formatReadingTime(p.readingMinutes)}</span>` : ''}
             </a>
         `).join('');
     } catch {
@@ -143,7 +166,7 @@ async function loadBlogPosts() {
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map(p => `
                 <a class="blog-card" href="/blog/posts/${p.slug}.html">
-                    <div class="blog-date">${formatDate(p.date)}</div>
+                    ${renderBlogMeta(p)}
                     <div class="blog-title">
                         ${p.title}
                         <span class="blog-arrow">↗</span>
@@ -158,3 +181,26 @@ async function loadBlogPosts() {
 
 loadRecentPosts();
 loadBlogPosts();
+
+/* ── Post page meta (tags, reading time) ─────────────────── */
+async function enrichPostMeta() {
+    const meta = document.querySelector('.post-meta[data-slug]');
+    if (!meta) return;
+
+    try {
+        const res = await fetch('/blog/posts.json');
+        const posts = await res.json();
+        const post = posts.find(p => p.slug === meta.dataset.slug);
+        if (!post) return;
+
+        const bits = [formatDate(post.date)];
+        if (post.readingMinutes) bits.push(formatReadingTime(post.readingMinutes));
+        meta.textContent = bits.join(' · ');
+
+        if (post.tags && post.tags.length) {
+            meta.insertAdjacentHTML('afterend', renderBlogTags(post.tags));
+        }
+    } catch { /* ignore */ }
+}
+
+enrichPostMeta();

@@ -37,7 +37,7 @@
     <header>
         <div class="header-left">
             <a class="pfp-link" href="/" aria-label="homepage">
-                <img class="pfp" src="/assets/pfp.png" alt="raizz avatar" width="32" height="32" />
+                <img class="pfp logo-svg" src="/assets/avatar.svg" alt="raizz logo" width="32" height="32" />
             </a>
             <a href="/">
                 <h1 class="site-title">raizz</h1>
@@ -97,6 +97,20 @@
             <li>Data Science</li>
             <li>Linux Systems</li>
         </ul>
+
+        <hr />
+
+        <h2>competitive stats</h2>
+        <p class="sub">Live Codeforces rating with cached stats from all judges.</p>
+        <div id="cp-stats-grid" class="cp-stats-grid"></div>
+        <p id="cp-stats-updated" class="cp-stats-updated"></p>
+
+        <hr />
+
+        <h2>resume</h2>
+        <p>
+            <a href="/cv.html">View my CV →</a> — print or save as PDF from the browser.
+        </p>
 
         <hr />
 
@@ -198,6 +212,7 @@
     </footer>
 
     <script src="/js/main.js"></script>
+    <script src="/js/stats.js"></script>
 </body>
 
 </html>

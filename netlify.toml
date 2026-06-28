@@ -1,6 +1,6 @@
 [build]
   publish = "."
-  command = "python3 scripts/gen-sitemap.py"
+  command = "python3 scripts/fetch-stats.py && python3 scripts/gen-sitemap.py"
 
 [[headers]]
   for = "/*"
@@ -11,6 +11,11 @@
 
 [[headers]]
   for = "/assets/pfp.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/avatar.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

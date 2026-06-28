@@ -15,6 +15,7 @@ STATIC_PAGES = [
     "/blog.html",
     "/uses.html",
     "/contact.html",
+    "/cv.html",
 ]
 
 posts_path = ROOT / "blog" / "posts.json"

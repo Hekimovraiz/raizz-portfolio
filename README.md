@@ -10,6 +10,7 @@ Personal portfolio of [Raiz Hekimov](https://github.com/Hekimovraiz) — competi
 - `/blog.html` — writing
 - `/uses.html` — tools and setup
 - `/contact.html` — get in touch
+- `/cv.html` — printable CV
 
 ## Local development
 
