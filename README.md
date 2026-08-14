@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="assets/pfp.png" alt="raizz avatar" width="120" style="border-radius: 50%;" />
   <h1>Raizz Portfolio</h1>
   <p>A minimalist, high-performance, and dark-themed developer portfolio & blog.</p>
 
